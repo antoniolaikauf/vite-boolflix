@@ -3,8 +3,8 @@ import comHeader from './components/ComHeader.vue';
 
 import comMain from './components/ComMain.vue'
 
-export default{
-  components:{
+export default {
+  components: {
     comHeader,
     comMain
   }
@@ -12,8 +12,14 @@ export default{
 </script>
 
 <template>
- <comHeader/>
- <comMain/>
+  <comHeader />
+  <main class="bg-secondary">
+    <div class="container">
+      <div class="row">
+        <comMain />
+      </div>
+    </div>
+  </main>
 </template>
 
 <style lang="scss">
