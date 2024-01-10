@@ -11,6 +11,8 @@ export default {
 <template>
     <div>
         {{ films.title }}
+        {{ films.name }}
+        {{ films.original_name }}
         {{ films.original_title }}
         {{ films.vote_average }}
         {{ films.original_language }}

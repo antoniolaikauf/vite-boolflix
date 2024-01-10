@@ -20,17 +20,33 @@ export default {
   methods: {
     // funzione richiesta api 
     richiestaapi() {
-      let urlAPI = store.linkAPI
+      let urlAPI = store.linkAPIfilm
       urlAPI += `&query=${store.searchFilm}`
+      let urlapiserie = store.linkAPIserie
+      urlapiserie += `&language=it_IT&query=${store.searchFilm}`
+      // api per film
       axios.get(urlAPI)
         .then((risposta) => {
-          store.arrayFilm=risposta.data.results
-          console.log(store.arrayFilm);
+          store.arrayFilm = risposta.data.results
+          // console.log(store.arrayFilm);
         })
         .catch((err) => {
           console.log("ritornato errore" + err);
         })
-      console.log(store.searchFilm);
+      // api per serie 
+      axios.get(urlapiserie)
+        .then((risposta) => {
+          store.arraySerie = risposta.data.results
+          // console.log(store.arraySerie);
+          store.arrayFilm = [...store.arrayFilm, ...store.arraySerie]
+          // console.log(store.arrayFilm);
+        })
+        .catch((err) => {
+          console.log("ritornato errore" + err);
+        })
+
+
+
     }
   },
   // created() {
