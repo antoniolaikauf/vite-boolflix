@@ -18,18 +18,12 @@ export default {
 </script>
 
 <template>
-    <ul class="list-group list-group-horizontal">
-        <li class="list-group-item border-0" v-for="(card, i) in store.arrayFilm">
+    <ul class="list-group list-group-horizontal flex-wrap">
+        <li class="list-group-item border-0 p-0 m-1" v-for="(card, i) in store.arrayFilm">
             <cardiesima :films="card"/>
         </li>
     </ul>
 </template>
 
 <style scoped lang="scss">
-ul{
-    flex-wrap: wrap;
-    li{
-        width: 20%;
-    }
-}
 </style>
