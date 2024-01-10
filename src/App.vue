@@ -18,12 +18,14 @@ export default {
     }
   },
   methods: {
+    // funzione richiesta api 
     richiestaapi() {
       let urlAPI = store.linkAPI
       urlAPI += `&query=${store.searchFilm}`
       axios.get(urlAPI)
         .then((risposta) => {
-          console.log(risposta.data);
+          store.arrayFilm=risposta.data.results
+          console.log(store.arrayFilm);
         })
         .catch((err) => {
           console.log("ritornato errore" + err);
@@ -31,9 +33,9 @@ export default {
       console.log(store.searchFilm);
     }
   },
-  created() {
-    this.richiestaapi()
-  }
+  // created() {
+  //   this.richiestaapi()
+  // }
 }
 </script>
 
