@@ -1,6 +1,8 @@
 <script >
+import axios from 'axios';
+// componente header
 import comHeader from './components/ComHeader.vue';
-
+// componente main 
 import comMain from './components/ComMain.vue'
 
 export default {
@@ -8,6 +10,8 @@ export default {
     comHeader,
     comMain
   }
+
+  
 }
 </script>
 
