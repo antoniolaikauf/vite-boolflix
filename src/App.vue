@@ -7,6 +7,7 @@ import comMain from './components/ComMain.vue'
 
 import { store } from './store'
 
+
 export default {
   components: {
     comHeader,
@@ -44,9 +45,10 @@ export default {
         .catch((err) => {
           console.log("ritornato errore" + err);
         })
-
-
-
+    },
+    trasformazioneVote(numero) {
+      Math.floor(numero)
+      console.log(numero);
     }
   },
   // created() {
@@ -69,3 +71,5 @@ export default {
 <style lang="scss">
 @use './style/general.scss'
 </style>
+
+// finire punto tre con fontawesome
