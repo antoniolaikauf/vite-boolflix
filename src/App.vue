@@ -8,8 +8,6 @@ import comMain from './components/ComMain.vue'
 import { store } from './store'
 
 
-
-
 export default {
   components: {
     comHeader,
@@ -52,10 +50,7 @@ export default {
       Math.floor(numero)
       console.log(numero);
     }
-  },
-  // created() {
-  //   this.richiestaapi()
-  // }
+  }
 }
 </script>
 
@@ -73,5 +68,3 @@ export default {
 <style lang="scss">
 @use './style/general.scss'
 </style>
-
-// finire punto tre con fontawesome

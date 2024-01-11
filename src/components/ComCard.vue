@@ -10,15 +10,14 @@ export default {
             stelle: ['src/assets/star-solid.svg', 'src/assets/star-solid.svg', 'src/assets/star-solid.svg', 'src/assets/star-solid.svg', 'src/assets/star-solid.svg'],
         }
     },
-    mounted() {
-        // qua si fa vedere quante stelle ha facendo vedere il voto che ha e sottrando la 
-        // lunghezza dell'array contenente le stelle con il voto cosi ti da le stelle da scartare 
-        // e con spilce le tolgo 
-        let value=Math.round(Math.floor(this.films.vote_average) / 2)
-        let valoreTolto= this.stelle.length - value
-        // console.log(valoreTolto);
-        this.stelle=this.stelle.splice(valoreTolto)
-        // console.log(this.stelle);     
+    computed: {
+        valutazioneFilm() {
+            let value = Math.round(Math.floor(this.films.vote_average) / 2)
+            let valoreTolto = this.stelle.length - value
+            // console.log(valoreTolto);
+            this.stelle = this.stelle.splice(valoreTolto)
+            return this.stelle
+        }
     }
 }
 </script>
@@ -45,8 +44,8 @@ export default {
             </div>
             <div>
                 <strong>voto:</strong> {{ Math.round(Math.floor(films.vote_average) / 2) }}
-                <span v-for="(stella, i) in stelle">
-                    <img :src="stella" alt="" class="valutazione">
+                <span v-for="(stella, i) in valutazioneFilm" :key="i">
+                    <img :src="stella" alt="immagine film" class="valutazione">
                 </span>
             </div>
             <div><strong>overwie</strong>{{ films.overview }}</div>
