@@ -31,7 +31,4 @@ li {
     width: 342px;
     background-color: unset;
 }
-
-
-
 </style>

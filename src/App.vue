@@ -8,10 +8,12 @@ import comMain from './components/ComMain.vue'
 import { store } from './store'
 
 
+
+
 export default {
   components: {
     comHeader,
-    comMain
+    comMain,
   },
   data() {
     return {
