@@ -1,6 +1,6 @@
 <script >
 export default {
-    comnew: "cardiesima",
+    newCom: "cardiesima",
 
     props: {
         films: Object
@@ -27,10 +27,14 @@ export default {
     <div class=" card ">
         <img :src="`https://image.tmdb.org/t/p/w342/${films.poster_path}`" alt="" class="text front-face">
         <div class="text back-face text-center">
-            <div><strong> titolo </strong>{{ films.titlestr }}</div>
-            <div><strong> titolo originale </strong> {{ films.original_title }}</div>
-            <strong> titolo </strong>{{ films.name }}
-            <strong> titolo </strong> {{ films.original_name }}
+            <div v-if="films.hasOwnProperty('title')">
+                <div><strong> titolo </strong>{{ films.title }}</div>
+                <div><strong> titolo originale </strong> {{ films.original_title }}</div>
+            </div>
+            <div v-else>
+                <div><strong> titolo </strong>{{ films.name }}</div>
+                <div> <strong> titolo originale </strong> {{ films.original_name }}</div>
+            </div>
             <div>
                 <strong> lingua </strong>{{ films.original_language }}
                 <span id="nazione">
@@ -104,3 +108,5 @@ e il testo non si vede. il testo non si vede perchè viene ruotato e grazie a  b
 lo nasconde  (essendo che nasconde il dietro di un elemento ) , all'hover
 dell'immagine fa ruotare tutte e due gi elementi quindi l'immagine ruota e non si vede e il testo ruota ancora e si vede 
 perche ritorna alla facciata iniziale -->
+
+<!-- hasOwnProperty ci permette di vedere se esiste quella propriet dentro all'oggetto  -->
