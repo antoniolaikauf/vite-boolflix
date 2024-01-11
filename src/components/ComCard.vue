@@ -24,7 +24,6 @@ export default {
 </script>
 
 <template>
-    <!-- <div class="rotating-container"> -->
         <div class=" card rotating-element">
             <img :src="`https://image.tmdb.org/t/p/w342/${films.poster_path}`" alt="" class="text front-face">
             <div class="text back-face text-center">
@@ -48,7 +47,6 @@ export default {
 
             </div>
         </div>
-    <!-- </div> -->
 </template>
 
 <style scoped lang="scss">
@@ -66,8 +64,6 @@ export default {
 .rotating-element {
     position: relative;
     height: 513px;
-    perspective: 1000px;
-    /* Aggiunge prospettiva per l'effetto 3D */
     transform-style: preserve-3d;
     /* Preserva la struttura 3D durante la rotazione */
     transition: transform 0.5s ease;
@@ -81,12 +77,7 @@ export default {
 
 .text {
     position: absolute;
-    width: 100%;
     height: 100%;
-    // display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
     backface-visibility: hidden;
     /* Nasconde la faccia posteriore durante la rotazione */
 }
@@ -96,3 +87,11 @@ export default {
     /* Ruota la faccia posteriore */
 }
 </style>
+
+<!-- backface-visibility permette di nascondere la faccia posteriore dell elemento.
+
+essendo che ci sono due div che hanno la classe text che ha position absolute, sono uno sopra l'altro 
+e il testo non si vede. il testo non si vede perchè viene ruotato e grazie a  backface-visibility 
+lo nasconde  (essendo che nasconde il dietro di un elemento ) , all'hover
+dell'immagine fa ruotare tutte e due gi elementi quindi l'immagine ruota e non si vede e il testo ruota ancora e si vede 
+perche ritorna alla facciata iniziale -->
