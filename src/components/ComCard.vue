@@ -8,6 +8,16 @@ export default {
     data() {
         return {
             stelle: ['src/assets/star-solid.svg', 'src/assets/star-solid.svg', 'src/assets/star-solid.svg', 'src/assets/star-solid.svg', 'src/assets/star-solid.svg'],
+            en: 'th (1).jpg',
+            ja: 'th (2).jpg',
+            eu: 'th.jpg',
+        }
+    },
+    methods: {
+        getImagePath(img) {
+
+            return 'src/assets/' + img
+            // `../src/assets${img}`      new URL('src/assets/' + img, import.meta.url).href;
         }
     },
     computed: {
@@ -17,15 +27,21 @@ export default {
             // console.log(valoreTolto);
             this.stelle = this.stelle.splice(valoreTolto)
             return this.stelle
-        }
+        },
     }
 }
 </script>
 
 <template>
-    <div></div>
+    <!-- <img :src="'src/assets/' + eu" alt=""> -->
     <div class=" card ">
-        <img :src="`https://image.tmdb.org/t/p/w342/${films.poster_path}`" alt="" class="text front-face">
+        <!-- header immagine presa da milestone 3 insieme alla larghezza -->
+        <span class="text front-face">
+            <img v-if="films.poster_path" :src="`https://image.tmdb.org/t/p/w342/${films.poster_path}`" :alt="films.id">
+            <span v-else>
+                QUESTO FILM NON HA IMMAGINE
+            </span>
+        </span>
         <div class="text back-face text-center">
             <div v-if="films.hasOwnProperty('title')">
                 <div><strong> titolo </strong>{{ films.title }}</div>
@@ -38,12 +54,12 @@ export default {
             <div>
                 <strong> lingua </strong>{{ films.original_language }}
                 <span id="nazione">
-                    <img v-if="films.original_language === 'ja'"
-                        src="https://tse1.mm.bing.net/th?id=OIP.pi5-qwhXy9IX2PyMDCaA5gHaEy&pid=Api&P=0&h=180" alt="">
-                    <img v-else-if="films.original_language === 'en'"
+                    <img :src="getImagePath(eu)" alt="nazione">
+                    <!-- <img :src="films.original_language === 'eu' ? :" alt=""> -->
+                    <!-- <img v-else-if="films.original_language === 'en'"
                         src="https://tse2.mm.bing.net/th?id=OIP.wwDmpRbHZQv8ijyk2Nb0XwHaEo&pid=Api&P=0&h=180" alt="">
                     <img v-else src="https://tse1.mm.bing.net/th?id=OIP.dA-znFMNgE62Fhiln_bTngHaE8&pid=Api&P=0&h=180"
-                        alt="">
+                        alt=""> -->
                 </span>
             </div>
             <div>
@@ -88,7 +104,6 @@ export default {
             width: 50px;
         }
     }
-
     .valutazione {
         filter: invert(1);
     }
