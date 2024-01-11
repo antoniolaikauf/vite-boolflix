@@ -7,8 +7,7 @@ export default {
     },
     data() {
         return {
-            // array di stelle
-            stelle: ['src/assets/star-solid.svg', 'src/assets/star-solid.svg', 'src/assets/star-solid.svg', 'src/assets/star-solid.svg', 'src/assets/star-solid.svg'],
+            stelle: [],
             // immagini bandiera 
             en: 'th (1).jpg',
             ja: 'th (2).jpg',
@@ -26,6 +25,11 @@ export default {
     // valutazioni stelle che cambiano in base al film messo in computed (cosi funziona anche senza cliccare un evento )
     computed: {
         valutazioneFilm() {
+            // riempito array di stelle
+            for (let i = 0; i < 5; i++) {
+                this.stelle.push('src/assets/star-solid.svg')
+
+            }
             // fatto stelle meno lunghezza array e tolto il risultato dall'array 
             let value = Math.round(Math.floor(this.films.vote_average) / 2)
             let valoreTolto = this.stelle.length - value
@@ -103,8 +107,10 @@ export default {
         backface-visibility: hidden;
         /* Nasconde la faccia posteriore durante la rotazione */
     }
+
     .back-face {
         transform: rotatey(180deg);
+        width: 100%;
         /* Ruota la faccia posteriore */
     }
 
@@ -113,7 +119,8 @@ export default {
             width: 50px;
         }
     }
-// filtro per le stelle cosi da colorarle 
+
+    // filtro per le stelle cosi da colorarle 
     .valutazione {
         filter: invert(1);
     }

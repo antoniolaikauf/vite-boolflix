@@ -47,6 +47,7 @@ export default {
         .catch((err) => {
           console.log("ritornato errore" + err);
         })
+      //  store.searchFilm = ''
     }
   }
 }
@@ -68,3 +69,5 @@ export default {
 <style lang="scss">
 @use './style/general.scss'
 </style>
+
+// chiedere per le stelle si potrebbe fare un ciclo per rempire l'array con 5 stelle all'interno della funzione  
