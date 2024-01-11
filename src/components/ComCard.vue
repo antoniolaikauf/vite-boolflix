@@ -7,21 +7,26 @@ export default {
     },
     data() {
         return {
+            // array di stelle
             stelle: ['src/assets/star-solid.svg', 'src/assets/star-solid.svg', 'src/assets/star-solid.svg', 'src/assets/star-solid.svg', 'src/assets/star-solid.svg'],
+            // immagini bandiera 
             en: 'th (1).jpg',
             ja: 'th (2).jpg',
             eu: 'th.jpg',
         }
     },
     methods: {
+        // funzione per le bandiere 
         getImagePath(img) {
 
             return 'src/assets/' + img
             // `../src/assets${img}`      new URL('src/assets/' + img, import.meta.url).href;
         }
     },
+    // valutazioni stelle che cambiano in base al film messo in computed (cosi funziona anche senza cliccare un evento )
     computed: {
         valutazioneFilm() {
+            // fatto stelle meno lunghezza array e tolto il risultato dall'array 
             let value = Math.round(Math.floor(this.films.vote_average) / 2)
             let valoreTolto = this.stelle.length - value
             // console.log(valoreTolto);
@@ -33,16 +38,17 @@ export default {
 </script>
 
 <template>
-    <!-- <img :src="'src/assets/' + eu" alt=""> -->
     <div class=" card ">
-        <!-- header immagine presa da milestone 3 insieme alla larghezza -->
         <span class="text front-face">
+            <!-- header immagine presa da milestone 3 insieme alla larghezza -->
+            <!-- controlllo se ci sono immagini o no -->
             <img v-if="films.poster_path" :src="`https://image.tmdb.org/t/p/w342/${films.poster_path}`" :alt="films.id">
             <span v-else>
                 QUESTO FILM NON HA IMMAGINE
             </span>
         </span>
         <div class="text back-face text-center">
+            <!-- controllo se c'è la proprietà/chiave dentro all'oggetto  -->
             <div v-if="films.hasOwnProperty('title')">
                 <div><strong> titolo </strong>{{ films.title }}</div>
                 <div><strong> titolo originale </strong> {{ films.original_title }}</div>
@@ -63,11 +69,14 @@ export default {
                 </span>
             </div>
             <div>
+                <!-- valutazione voto del film  -->
                 <strong>voto:</strong> {{ Math.round(Math.floor(films.vote_average) / 2) }}
+                <!-- stambaggio delle stelle in base a quanto da la funzione valutazione film  -->
                 <span v-for="(stella, i) in valutazioneFilm" :key="i">
                     <img :src="stella" alt="immagine film" class="valutazione">
                 </span>
             </div>
+            <!-- descrizione film  -->
             <div><strong>overwie</strong>{{ films.overview }}</div>
         </div>
     </div>
@@ -80,6 +89,7 @@ export default {
     --bs-card-border-width: var(user-select: none);
     background-color: black;
     color: white;
+    // caratteristiche per far si che ruota l'immagine e veda il testo c'è anche descrizione come avviene in fondo 
     position: relative;
     height: 513px;
     transform-style: preserve-3d;
@@ -93,7 +103,6 @@ export default {
         backface-visibility: hidden;
         /* Nasconde la faccia posteriore durante la rotazione */
     }
-
     .back-face {
         transform: rotatey(180deg);
         /* Ruota la faccia posteriore */
@@ -104,6 +113,7 @@ export default {
             width: 50px;
         }
     }
+// filtro per le stelle cosi da colorarle 
     .valutazione {
         filter: invert(1);
     }

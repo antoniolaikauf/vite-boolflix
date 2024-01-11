@@ -4,7 +4,7 @@ import axios from 'axios';
 import comHeader from './components/ComHeader.vue';
 // componente main 
 import comMain from './components/ComMain.vue'
-
+// importazione store 
 import { store } from './store'
 
 
@@ -21,8 +21,10 @@ export default {
   methods: {
     // funzione richiesta api 
     richiestaapi() {
+      // link api per film 
       let urlAPI = store.linkAPIfilm
       urlAPI += `&query=${store.searchFilm}`
+      // link per api serie 
       let urlapiserie = store.linkAPIserie
       urlapiserie += `&language=it_IT&query=${store.searchFilm}`
       // api per film
@@ -45,20 +47,18 @@ export default {
         .catch((err) => {
           console.log("ritornato errore" + err);
         })
-    },
-    trasformazioneVote(numero) {
-      Math.floor(numero)
-      console.log(numero);
     }
   }
 }
 </script>
 
 <template>
+  <!-- componenste header -->
   <comHeader @searchfilm="richiestaapi" />
   <main class="bg-secondary">
     <div class="container">
       <div class="row">
+        <!-- componente main -->
         <comMain />
       </div>
     </div>
