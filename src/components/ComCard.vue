@@ -7,18 +7,26 @@ export default {
     },
     data() {
         return {
+            // array con stelle
             stelle: [],
             // immagini bandiera 
-            en: 'th (1).jpg',
-            ja: 'th (2).jpg',
-            eu: 'th.jpg',
+            en: 'th.jpg',
+            ja: 'th (1).jpg',
+            eu: 'th (2).jpg',
+            // percorso immagini
+            immaginePercorso: 'src/assets/'
         }
     },
     methods: {
         // funzione per le bandiere 
         getImagePath(img) {
-
-            return 'src/assets/' + img
+            if (this.films.original_language === 'en') {
+                return img + this.en
+            } else if (this.films.original_language === 'ja') {
+                return img + this.ja
+            } {
+                return img + this.eu
+            }
             // `../src/assets${img}`      new URL('src/assets/' + img, import.meta.url).href;
         }
     },
@@ -28,8 +36,8 @@ export default {
             // riempito array di stelle
             for (let i = 0; i < 5; i++) {
                 this.stelle.push('src/assets/star-solid.svg')
-
             }
+            // console.log(this.stelle);
             // fatto stelle meno lunghezza array e tolto il risultato dall'array 
             let value = Math.round(Math.floor(this.films.vote_average) / 2)
             let valoreTolto = this.stelle.length - value
@@ -37,7 +45,7 @@ export default {
             this.stelle = this.stelle.splice(valoreTolto)
             return this.stelle
         },
-    }
+    },
 }
 </script>
 
@@ -64,12 +72,8 @@ export default {
             <div>
                 <strong> lingua </strong>{{ films.original_language }}
                 <span id="nazione">
-                    <img :src="getImagePath(eu)" alt="nazione">
-                    <!-- <img :src="films.original_language === 'eu' ? :" alt=""> -->
-                    <!-- <img v-else-if="films.original_language === 'en'"
-                        src="https://tse2.mm.bing.net/th?id=OIP.wwDmpRbHZQv8ijyk2Nb0XwHaEo&pid=Api&P=0&h=180" alt="">
-                    <img v-else src="https://tse1.mm.bing.net/th?id=OIP.dA-znFMNgE62Fhiln_bTngHaE8&pid=Api&P=0&h=180"
-                        alt=""> -->
+                    <!-- comparsa bandiere nazioni -->
+                    <img :src="getImagePath(immaginePercorso)" alt="nazione">
                 </span>
             </div>
             <div>

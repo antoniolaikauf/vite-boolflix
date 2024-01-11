@@ -70,4 +70,4 @@ export default {
 @use './style/general.scss'
 </style>
 
-// chiedere per le stelle si potrebbe fare un ciclo per rempire l'array con 5 stelle all'interno della funzione  
+// sistemare problema che da con immagini  
