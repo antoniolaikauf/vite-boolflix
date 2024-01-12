@@ -16,7 +16,7 @@ export default {
                 eu: 'th (2).jpg',
             }],
             // percorso immagini
-            immaginePercorso: 'src/assets/'
+            immaginePercorso: 'src/assets/',
         }
     },
     methods: {
@@ -103,7 +103,7 @@ export default {
 <style scoped lang="scss">
 .card {
     // proprieta tolta da bootstrap
-    --bs-card-border-width:unset;
+    --bs-card-border-width: unset;
     background-color: black;
     color: white;
     // caratteristiche per far si che ruota l'immagine e veda il testo c'è anche descrizione come avviene in fondo 
