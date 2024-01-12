@@ -98,7 +98,7 @@ export default {
                 </span>
             </div>
             <!-- descrizione film  -->
-            <div><strong>overwie</strong>{{ films.overview }}</div>
+            <p><strong>overwie</strong>{{ films.overview }}</p>
         </div>
     </div>
 </template>
@@ -139,6 +139,15 @@ export default {
     // filtro per le stelle cosi da colorarle 
     .valutazione {
         filter: invert(1);
+    }
+
+    p {
+        height: 350px;
+        overflow-y: scroll;
+    }
+
+    p::-webkit-scrollbar {
+        display: none;
     }
 }
 
