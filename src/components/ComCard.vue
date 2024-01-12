@@ -9,10 +9,12 @@ export default {
         return {
             // array con stelle
             stelle: [],
-            // immagini bandiera 
-            en: 'th.jpg',
-            ja: 'th (1).jpg',
-            eu: 'th (2).jpg',
+            // array di bandiere
+            flags: [{
+                en: 'th.jpg',
+                ja: 'th (1).jpg',
+                eu: 'th (2).jpg',
+            }],
             // percorso immagini
             immaginePercorso: 'src/assets/'
         }
@@ -20,14 +22,21 @@ export default {
     methods: {
         // funzione per le bandiere 
         getImagePath(img) {
+
             if (this.films.original_language === 'en') {
-                return img + this.en
+                // bandiera inglese 
+                return img + this.flags[0].en
             } else if (this.films.original_language === 'ja') {
-                return img + this.ja
+                // bandiera giapponese
+                return img + this.flags[0].ja
             } {
-                return img + this.eu
+                // bandiere restanti
+                return img + this.flags[0].eu
             }
-            // `../src/assets${img}`      new URL('src/assets/' + img, import.meta.url).href;
+        },
+        // funzione per arrotondare il voto
+        CalcoloVoto(voto) {
+            return Math.round(voto / 2)
         }
     },
     // valutazioni stelle che cambiano in base al film messo in computed (cosi funziona anche senza cliccare un evento )
@@ -39,13 +48,14 @@ export default {
             }
             // console.log(this.stelle);
             // fatto stelle meno lunghezza array e tolto il risultato dall'array 
-            let value = Math.round(Math.floor(this.films.vote_average) / 2)
+            let value = this.CalcoloVoto(this.films.vote_average)
             let valoreTolto = this.stelle.length - value
             // console.log(valoreTolto);
             this.stelle = this.stelle.splice(valoreTolto)
             return this.stelle
-        },
+        }
     },
+
 }
 </script>
 
@@ -78,7 +88,7 @@ export default {
             </div>
             <div>
                 <!-- valutazione voto del film  -->
-                <strong>voto:</strong> {{ Math.round(Math.floor(films.vote_average) / 2) }}
+                <strong>voto:</strong> {{ CalcoloVoto(films.vote_average) }}
                 <!-- stambaggio delle stelle in base a quanto da la funzione valutazione film  -->
                 <span v-for="(stella, i) in valutazioneFilm" :key="i">
                     <img :src="stella" alt="immagine film" class="valutazione">
