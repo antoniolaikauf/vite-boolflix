@@ -15,12 +15,16 @@ export default {
   },
   data() {
     return {
-      store
+      store,
     }
   },
   methods: {
     // funzione richiesta api 
     richiestaapi() {
+      // controllo se utente ha scritto dentro all'input 
+      if (store.searchFilm === '') {
+        alert("devi scrivere un film")
+      }
       // link api per film 
       let urlAPI = store.linkAPIfilm
       urlAPI += `&query=${store.searchFilm}`
@@ -47,7 +51,8 @@ export default {
         .catch((err) => {
           console.log("ritornato errore" + err);
         })
-      //  store.searchFilm = ''
+      // svuotamento input
+      store.searchFilm = ''
     }
   }
 }

@@ -65,9 +65,9 @@ export default {
             <!-- header immagine presa da milestone 3 insieme alla larghezza -->
             <!-- controlllo se ci sono immagini o no -->
             <img v-if="films.poster_path" :src="`https://image.tmdb.org/t/p/w342/${films.poster_path}`" :alt="films.id">
-            <span v-else>
+            <h3 v-else class="text-center">
                 QUESTO FILM NON HA IMMAGINE
-            </span>
+            </h3>
         </span>
         <div class="text back-face text-center">
             <!-- controllo se c'è la proprietà/chiave dentro all'oggetto  -->
@@ -103,8 +103,7 @@ export default {
 <style scoped lang="scss">
 .card {
     // proprieta tolta da bootstrap
-    --bs-card-border-width: var(user-select: none);
-    --bs-card-border-width: var(user-select: none);
+    --bs-card-border-width:unset;
     background-color: black;
     color: white;
     // caratteristiche per far si che ruota l'immagine e veda il testo c'è anche descrizione come avviene in fondo 
@@ -118,13 +117,13 @@ export default {
     .text {
         position: absolute;
         height: 100%;
+        width: 100%;
         backface-visibility: hidden;
         /* Nasconde la faccia posteriore durante la rotazione */
     }
 
     .back-face {
         transform: rotatey(180deg);
-        width: 100%;
         /* Ruota la faccia posteriore */
     }
 
