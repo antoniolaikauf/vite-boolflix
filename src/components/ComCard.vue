@@ -17,6 +17,8 @@ export default {
             }],
             // percorso immagini
             immaginePercorso: 'src/assets/',
+            // icona stella
+            starIcon: '<i class="fa-solid fa-star"></i>'
         }
     },
     methods: {
@@ -44,7 +46,8 @@ export default {
         valutazioneFilm() {
             // riempito array di stelle
             for (let i = 0; i < 5; i++) {
-                this.stelle.push('src/assets/star-solid.svg')
+                // this.stelle.push('src/assets/star-solid.svg')
+                this.stelle.push(this.starIcon)
             }
             // console.log(this.stelle);
             // fatto stelle meno lunghezza array e tolto il risultato dall'array 
@@ -91,7 +94,7 @@ export default {
                 <strong>voto:</strong> {{ CalcoloVoto(films.vote_average) }}
                 <!-- stambaggio delle stelle in base a quanto da la funzione valutazione film  -->
                 <span v-for="(stella, i) in valutazioneFilm" :key="i">
-                    <img :src="stella" alt="immagine film" class="valutazione">
+                    <span v-html="stella"></span>
                 </span>
             </div>
             <!-- descrizione film  -->
@@ -155,3 +158,6 @@ dell'immagine fa ruotare tutte e due gi elementi quindi l'immagine ruota e non s
 perche ritorna alla facciata iniziale -->
 
 <!-- hasOwnProperty ci permette di vedere se esiste quella propriet dentro all'oggetto  -->
+
+<!-- v-html vine utilizzato per inserire i tag in modo dinamico  è come quando creavi delle card dentro a javascript prima con i backtick e lo inserivi dentro con innerhtml
+se non si usasse quello vedrebbe '<i class="fa-solid fa-star"></i>' come usa semplice stringa   -->
