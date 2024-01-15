@@ -52,9 +52,9 @@ export default {
           console.log("ritornato errore" + err);
         })
       // svuotamento input
-      store.searchFilm = ''
+      // store.searchFilm = ''
     }
-  }
+  },
 }
 </script>
 

@@ -10,11 +10,12 @@ export default {
             // array con stelle
             stelle: [],
             // array di bandiere
-            flags: [{
-                en: 'th.jpg',
-                ja: 'th (1).jpg',
-                eu: 'th (2).jpg',
-            }],
+            // flags: [{
+            //     en: 'th.jpg',
+            //     ja: 'th (1).jpg',
+            //     eu: 'th (2).jpg',
+            // }],
+            flag: ['eu', 'en', 'ja'],
             // percorso immagini
             immaginePercorso: 'src/assets/',
             // icona stella
@@ -25,20 +26,14 @@ export default {
         // funzione per le bandiere 
         getImagePath(img) {
 
-            if (this.films.original_language === 'en') {
-                // bandiera inglese 
-                return img + this.flags[0].en
-            } else if (this.films.original_language === 'ja') {
-                // bandiera giapponese
-                return img + this.flags[0].ja
-            } {
-                // bandiere restanti
-                return img + this.flags[0].eu
+
+            if (this.flag.includes(img)) {
+                return `src/assets/${img}.jpg`
             }
         },
         // funzione per arrotondare il voto
         CalcoloVoto(voto) {
-            return Math.round(voto / 2)
+            return Math.ceil(voto / 2)
         }
     },
     // valutazioni stelle che cambiano in base al film messo in computed (cosi funziona anche senza cliccare un evento )
@@ -86,7 +81,7 @@ export default {
                 <strong> lingua </strong>{{ films.original_language }}
                 <span id="nazione">
                     <!-- comparsa bandiere nazioni -->
-                    <img :src="getImagePath(immaginePercorso)" alt="nazione">
+                    <img :src="getImagePath(films.original_language)" alt="nazione">
                 </span>
             </div>
             <div>
